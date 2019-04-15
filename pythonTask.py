@@ -37,8 +37,6 @@ pygame.mixer.pre_init(44100, -bits, 2)
 pygame.init()
 _display_surf = pygame.display.set_mode(size, pygame.HWSURFACE | pygame.DOUBLEBUF)
 
-#this sounds totally different coming out of a laptop versus coming out of headphones
-
 tones =range(-11,37)
 #print(tones)
 print("processing..Please wait")
@@ -46,8 +44,7 @@ buff1 = [changesound(n) for n in tones]
 print(len(buff1))
 s =map(pygame.sndarray.make_sound,buff1)
 key_sound = dict(zip(keys, s))
-#play once, then loop forever
-#sound.play()
+
 print("done")
 is_playing = {k: False for k in keys}
 
@@ -59,7 +56,6 @@ while _running:
             key = pygame.key.name(event.key)
 
         if event.type == pygame.KEYDOWN:
-#            print(pygame.KEYDOWN)
             if (key in key_sound.keys()) and (not is_playing[key]):
                 key_sound[key].play(fade_ms=50)
                 print(key_sound.keys()) 
